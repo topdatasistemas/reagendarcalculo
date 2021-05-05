@@ -1,0 +1,6 @@
+arquivo="$1"
+
+while IFS= read -r linha ; do
+	curl -X POST -i 'http://qatopapirelatorio.azurewebsites.net/apirelatorio/background/agendarProcessoPresenca' -H 'Content-Type: application/json' --header 'User-Agent: Curl' --data-raw '{"baseCliente":'+$linha+',"dataProcesso":"2021-05-05","funcionarios":[],"status":"AGUARDANDO"}'
+   echo  lendo linha :  "$linha"
+done < "$arquivo"
